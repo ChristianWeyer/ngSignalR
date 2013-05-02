@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>SignalR integration - Server Time</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-1.9.1.min.js"></script>
+    <script src="../Scripts/jquery.signalR-1.1.0-beta1.min.js"></script>
+    <script src="../Scripts/angular.min.js"></script>
+    <script src="../Scripts/smoothie.js"></script>
+    <script src="ngSignalR.js"></script>
+    <script src="app.js"></script>
+    <script src="directives.js"></script>
+    <script src="controllers.js"></script>
+</head>
+<body ng-app="signalRIntegrationApp">
+    <div ng-controller="ServerTimeController">
+        <div>
+            <h3>Time from server (being pushed every 5 seconds):</h3>
+            <h4>{{currentServerTime}}</h4>
+        </div>
+
+        <div>
+            <button ng-click="getServerTime()">Get time from server</button>
+
+            <div>
+                <h3>Manual time from server:</h3>
+                <h4>{{currentServerTimeManually}}</h4>
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="PerformanceDataController">
+        <h3>Overall CPU time:</h3>
+        <div>
+            <smoothie-chart data="cpuData" />
+        </div>
+    </div>
+</body>
+</html>
