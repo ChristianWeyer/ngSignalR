@@ -1,8 +1,8 @@
 ﻿'use strict';
 
-function ServerTimeController($scope, signalRHubProxy) {
-    var clientPushHubProxy = signalRHubProxy(signalRHubProxy.defaultServer, 'clientPushHub', { logging: true });
-    var serverTimeHubProxy = signalRHubProxy(signalRHubProxy.defaultServer, 'serverTimeHub');
+function ServerTimeController($scope, hubProxy) {
+    var clientPushHubProxy = hubProxy(hubProxy.defaultServer, 'clientPushHub', { logging: true }).start();
+    var serverTimeHubProxy = hubProxy(hubProxy.defaultServer, 'serverTimeHub').start();
 
     clientPushHubProxy.on('serverTime', function (data) {
         $scope.currentServerTime = data;
@@ -16,8 +16,8 @@ function ServerTimeController($scope, signalRHubProxy) {
     };
 };
 
-function PerformanceDataController($scope, signalRHubProxy) {
-    var performanceDataHub = signalRHubProxy(signalRHubProxy.defaultServer, 'performanceDataHub');
+function PerformanceDataController($scope, hubProxy) {
+    var performanceDataHub = hubProxy(hubProxy.defaultServer, 'performanceDataHub').start();
     
     performanceDataHub.on('newCpuDataValue', function (data) {
         $scope.cpuData = data;
