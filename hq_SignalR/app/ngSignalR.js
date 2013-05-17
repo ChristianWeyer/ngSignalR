@@ -10,8 +10,8 @@ angular.module('ngSignalR', ['ng']).
             return {
                 start: function (startOptions) {
                     proxy = connection.createHubProxy(hubName);
-                    connection.start(startOptions).done(function () { });
-                    return this;
+                    
+                    return connection.start(startOptions);
                 },
                 stop: function () {
                     connection.stop();
