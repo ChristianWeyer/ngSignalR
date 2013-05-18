@@ -4,7 +4,9 @@ function ServerTimeController($scope, hubProxy) {
     var clientPushHubProxy = hubProxy(hubProxy.defaultServer, 'clientPushHub', { logging: true });
     var serverTimeHubProxy = hubProxy(hubProxy.defaultServer, 'serverTimeHub');
     clientPushHubProxy.start();
-    serverTimeHubProxy.start();
+    serverTimeHubProxy.start().done(function() {
+        getTimeFromServer();
+    });
 
     clientPushHubProxy.on('serverTime', function (data) {
         $scope.currentServerTime = data;
@@ -12,10 +14,14 @@ function ServerTimeController($scope, hubProxy) {
     });
     
     $scope.getServerTime = function () {
+        getTimeFromServer();
+    };
+    
+    function getTimeFromServer() {
         serverTimeHubProxy.invoke('getServerTime', function (data) {
             $scope.currentServerTimeManually = data;
         });
-    };
+    }
 };
 
 function PerformanceDataController($scope, hubProxy) {
