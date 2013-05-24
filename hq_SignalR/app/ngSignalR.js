@@ -10,7 +10,7 @@ angular.module('ngSignalR', ['ng']).
             return {
                 start: function (startOptions) {
                     proxy = connection.createHubProxy(hubName);
-                    
+
                     return connection.start(startOptions);
                 },
                 stop: function () {
@@ -20,7 +20,7 @@ angular.module('ngSignalR', ['ng']).
                 on: function (eventName, callback) {
                     proxy.on(eventName, function (result) {
                         $rootScope.$apply(function () {
-                            if (callback) {
+                            if (callback && result) {
                                 callback(result);
                             }
                         });
@@ -29,17 +29,17 @@ angular.module('ngSignalR', ['ng']).
                 off: function (eventName, callback) {
                     proxy.off(eventName, function (result) {
                         $rootScope.$apply(function () {
-                            if (callback) {
+                            if (callback && result) {
                                 callback(result);
                             }
                         });
                     });
                 },
                 invoke: function (methodName, callback) {
-                    proxy.invoke(methodName)
+                    proxy.invoke(methodName, arguments[1])
                         .done(function (result) {
                             $rootScope.$apply(function () {
-                                if (callback) {
+                                if (callback && result) {
                                     callback(result);
                                 }
                             });
