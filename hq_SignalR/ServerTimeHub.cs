@@ -9,5 +9,10 @@ namespace AngularJS.Integration.SignalR
         {
             return DateTime.UtcNow.ToString();
         }
+
+        public void GetVoid()
+        {
+           
+        }
     }
 }
