@@ -18,38 +18,40 @@ angular.module('ngSignalR', ['ng']).
                     proxy = null;
                 },
                 on: function (eventName, callback) {
-                    proxy.on(eventName, function (result) {
-                        $rootScope.$apply(function () {
-                            if (callback) {
-                                callback(result);
-                            }
-                        });
+                    proxy.on(eventName, function () {
+                        var eventNameArguments = arguments;
+                        if (callback) {
+                            $rootScope.$apply(function () {
+                                callback.apply(callback, eventNameArguments);
+                            });
+                        }
                     });
                 },
                 off: function (eventName, callback) {
-                    proxy.off(eventName, function (result) {
-                        $rootScope.$apply(function () {
-                            if (callback) {
-                                callback(result);
-                            }
-                        });
+                    proxy.off(eventName, function () {
+                        var eventNameArguments = arguments;
+                        if (callback) {
+                            $rootScope.$apply(function () {
+                                callback.apply(callback, eventNameArguments);
+                            });
+                        }
                     });
                 },
-                invoke: function (methodName, callback) {
-                    var f;
-                    if (arguments.length < 3) {
-                        f = proxy.invoke(methodName);
-                    } else {
-                        f = proxy.invoke(methodName, arguments[1]);
+                invoke: function () { // params methodName, argsForMethodName..., callback
+                    var len = arguments.length;
+                    var args = Array.prototype.slice.call(arguments); // convert to real array
+                    var callback = undefined;
+                    if (len > 1) {
+                        callback = args.pop();
                     }
-
-                    f.done(function (result) {
-                        $rootScope.$apply(function () {
+                    proxy.invoke.apply(proxy, args)
+                        .done(function (result) {
                             if (callback) {
-                                callback(result);
+                                $rootScope.$apply(function () {
+                                    callback(result);
+                                });
                             }
                         });
-                    });
                 },
                 connection: connection
             };

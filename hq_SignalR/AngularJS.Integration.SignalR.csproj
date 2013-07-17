@@ -467,6 +467,9 @@
     <Content Include="Scripts\jquery.signalR-1.1.1.js" />
     <Content Include="Scripts\jquery.signalR-1.1.1.min.js" />
     <Content Include="Scripts\smoothie.js" />
+    <Content Include="tests\jasmine.js" />
+    <Content Include="tests\karma.conf.js" />
+    <Content Include="tests\ngSignalR_tests.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
