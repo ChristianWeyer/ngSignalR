@@ -150,7 +150,7 @@ describe('ngSignalR', function () {
                         function (p1, p2) {
                             expect(arguments.length).toBe(2);
                             expect(p1).toBe('param1b');
-                            expect(p2).toBe(352);
+                            expect(p2).toBe(35);
                         });
 
                     testProxy.invoke('dummyMethodName', 'param1b', 35, 'dummyCallback');
