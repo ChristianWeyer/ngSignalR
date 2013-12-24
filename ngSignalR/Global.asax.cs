@@ -14,14 +14,6 @@ namespace AngularJS.Integration.SignalR
         {
             bstt = new BackgroundServerTimeTimer();
             bpdt = new BackgroundPerformanceDataTimer();
-
-            RouteTable.Routes.MapHubs(new HubConfiguration { EnableCrossDomain = true, EnableDetailedErrors = true });
-
-            AreaRegistration.RegisterAllAreas();
-
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
     }
 }
