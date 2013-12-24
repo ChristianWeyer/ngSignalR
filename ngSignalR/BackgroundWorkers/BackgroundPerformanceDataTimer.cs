@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.SignalR;
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Web.Hosting;
 
@@ -7,7 +8,7 @@ namespace AngularJS.Integration.SignalR
 {
     public class BackgroundPerformanceDataTimer : IRegisteredObject
     {
-        //private readonly PerformanceCounter processorCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+        private readonly PerformanceCounter processorCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
         private Timer taskTimer;
         private IHubContext hub;
 
@@ -21,9 +22,9 @@ namespace AngularJS.Integration.SignalR
 
         private void OnTimerElapsed(object sender)
         {
-            //var perfValue = processorCounter.NextValue().ToString("0.0");
-            var r = new Random();
-            var perfValue = r.Next(40, 70).ToString();
+            var perfValue = processorCounter.NextValue().ToString("0.0");
+            //var r = new Random();
+            //var perfValue = r.Next(10, 50).ToString();
 
             hub.Clients.All.newCpuDataValue(perfValue);
         }
