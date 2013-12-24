@@ -134,11 +134,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackgroundServerTimeTimer.cs" />
-    <Compile Include="ClientPushHub.cs" />
-    <Compile Include="BackgroundPerformanceDataTimer.cs" />
-    <Compile Include="PerformanceDataHub.cs" />
-    <Compile Include="ServerTimeHub.cs" />
+    <Compile Include="BackgroundWorkers\BackgroundServerTimeTimer.cs" />
+    <Compile Include="Hubs\ClientPushHub.cs" />
+    <Compile Include="BackgroundWorkers\BackgroundPerformanceDataTimer.cs" />
+    <Compile Include="Hubs\PerformanceDataHub.cs" />
+    <Compile Include="Hubs\ServerTimeHub.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

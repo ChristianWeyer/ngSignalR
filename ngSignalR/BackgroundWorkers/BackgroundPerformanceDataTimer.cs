@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
 using System;
 using System.Threading;
 using System.Web.Hosting;
